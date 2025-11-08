@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Empréstimos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="header-title">📚 Sistema Bibliotecário</h1>
+    <nav class="main-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="livros.html">Livros</a>
+      <a href="emprestimos.html" class="active">Empréstimos</a>
+      <button id="logoutBtn">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="form-section">
+      <h3>Registrar / Editar Empréstimo</h3>
+      <form id="emprestimoForm">
+        <input type="hidden" id="emprestimoId">
+        
+        <label for="usuarioSelect">Usuário:</label>
+        <select id="usuarioSelect" required></select>
+
+        <label for="livroSelect">Livro:</label>
+        <select id="livroSelect" required></select>
+
+        <label for="dataEmprestimo">Data do Empréstimo:</label>
+        <input type="date" id="dataEmprestimo" required>
+
+        <label for="status">Status:</label>
+        <select id="status" required>
+          <option value="Emprestado">Emprestado</option>
+          <option value="Devolvido">Devolvido</option>
+        </select>
+
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+
+    <section id="lista-section">
+      <h3>Histórico de Empréstimos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Data Empréstimo</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaEmprestimos"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Livros</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="header-title">📚 Sistema Bibliotecário</h1>
+    <nav class="main-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="livros.html" class="active">Livros</a>
+      <a href="emprestimos.html">Empréstimos</a>
+      <button id="logoutBtn">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="form-section">
+      <h3>Adicionar / Editar Livro</h3>
+      <form id="livroForm">
+        <input type="hidden" id="livroId">
+        <input type="text" id="titulo" placeholder="Título" required>
+        <input type="text" id="autor" placeholder="Autor" required>
+        <input type="text" id="editora" placeholder="Editora" required>
+        <input type="number" min="0" max="2025" id="anoPublicacao" placeholder="Ano de Publicação" required>
+        <input type="text" id="genero" placeholder="Gênero" required>
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+
+    <section id="lista-section">
+      <h3>Lista de Livros</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Editora</th>
+            <th>Ano</th>
+            <th>Gênero</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaLivros"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

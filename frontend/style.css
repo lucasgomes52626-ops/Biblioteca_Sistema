@@ -1,0 +1,433 @@
+/* ===== GERAL & VARIÁVEIS ===== */
+:root {
+  --cor-primaria: #5A8DEE; /* Azul suave */
+  --cor-primaria-hover: #4777d6;
+  --cor-secundaria: #63a4ff;
+  --cor-destaque: #FF9F43; /* Laranja para destaque */
+  --cor-destaque-hover: #f88e2a;
+  --cor-fundo: #f5f7fa;
+  --cor-container: #ffffff;
+  --cor-texto: #474747; /* Cinza escuro para melhor legibilidade */
+  --cor-texto-claro: #7a7a7a;
+  --cor-borda: #e0e0e0;
+  --cor-sucesso: #2ecc71;
+  --cor-erro: #e74c3c;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --raio-borda: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* ===== PÁGINA DE LOGIN ===== */
+.login-page {
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-container {
+  background: var(--cor-container);
+  padding: 45px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.login-container .icon {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.login-container h1 {
+  margin-bottom: 10px;
+  color: var(--cor-primaria);
+  font-size: 28px;
+}
+
+.login-container .subtitle {
+  color: var(--cor-texto-claro);
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+}
+
+#errorMessage {
+  color: var(--cor-erro);
+  font-weight: 500;
+  min-height: 20px;
+}
+
+/* ===== HEADER GERAL (DASHBOARD E PÁGINAS INTERNAS) ===== */
+header {
+  background-color: var(--cor-container);
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+header .header-title {
+  color: var(--cor-primaria);
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+header .main-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .main-nav a {
+  color: var(--cor-texto-claro);
+  background-color: transparent;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--raio-borda);
+  font-weight: 500;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+header .main-nav a:hover {
+  background-color: #f0f2f5;
+  color: var(--cor-primaria);
+}
+
+header .main-nav a.active {
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+/* Botões do menu do dashboard com a cor de destaque */
+.dashboard-menu .menu-btn {
+  background-color: transparent;
+  color: var(--cor-texto-claro);
+  border: 2px solid transparent;
+}
+
+.dashboard-menu .menu-btn:hover, .dashboard-menu .menu-btn.active {
+  background-color: var(--cor-destaque);
+  color: white;
+  transform: translateY(-2px);
+}
+
+button, .btn-login {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--raio-borda);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover, .btn-login:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+}
+
+/* Estilo para botões secundários (ex: Editar em tabelas) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+}
+.btn-secondary:hover {
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+.btn-login {
+  position: relative;
+  width: 100%;
+}
+
+.btn-login .spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+.btn-login.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-login.loading .spinner {
+  display: block !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#logoutBtn {
+  background-color: var(--cor-erro);
+}
+
+#logoutBtn:hover {
+  background-color: #c0392b;
+}
+
+.dashboard-content {
+  padding: 30px;
+  text-align: center;
+  max-width: 1200px; /* Define uma largura máxima para o conteúdo */
+  margin: 0 auto; /* Centraliza o conteúdo na página */
+}
+
+/* ===== DASHBOARD ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-card {
+  background-color: var(--cor-container);
+  padding: 30px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.stat-card .stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+.content-section {
+  background: var(--cor-container);
+  padding: 40px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+  display: none; /* Controlado por JS */
+  animation: fadeIn 0.5s ease-out;
+}
+
+.content-section.active {
+  display: block;
+}
+
+.content-section h2 {
+  margin-bottom: 10px;
+  color: var(--cor-primaria);
+}
+
+.content-section p {
+  color: var(--cor-texto-claro);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== PÁGINAS DE GERENCIAMENTO (Usuários, Livros, Empréstimos) ===== */
+main {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  align-items: flex-start;
+}
+
+#form-section {
+  flex: 1;
+  background: var(--cor-container);
+  padding: 25px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 30px;
+}
+
+#lista-section {
+  flex: 2;
+  background: var(--cor-container);
+  padding: 25px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+}
+
+#form-section h3, #lista-section h3 {
+  margin-bottom: 20px;
+  color: var(--cor-primaria);
+  border-bottom: 2px solid var(--cor-secundaria);
+  padding-bottom: 10px;
+}
+
+/* Formulários de Gerenciamento */
+form input, form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-size: 15px;
+}
+
+form input:focus, form select:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+}
+
+form button[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+thead {
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+thead th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+tbody tr:hover {
+  background-color: #fcfcfd;
+}
+
+td button {
+  padding: 6px 12px;
+  font-size: 13px;
+  margin-right: 5px;
+  border-radius: 6px;
+}
+
+td button:last-child {
+  margin-right: 0;
+}
+
+td button:hover {
+  transform: translateY(-1px);
+}
+
+/* Botões de ação na tabela */
+button.btn-delete, button.btn-finish {
+  background-color: transparent;
+  color: var(--cor-texto-claro);
+  border: 1px solid var(--cor-borda);
+}
+
+button.btn-delete:hover {
+  background-color: var(--cor-erro);
+  color: white;
+  border-color: var(--cor-erro);
+}
+
+button.btn-finish:hover {
+  background-color: var(--cor-sucesso);
+  color: white;
+  border-color: var(--cor-sucesso);
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+}
+
+.status.emprestado {
+  background-color: #f39c12;
+}
+
+.status.devolvido {
+  background-color: var(--cor-sucesso);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  #form-section {
+    position: static;
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

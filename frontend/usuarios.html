@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Usuários</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="header-title">📚 Sistema Bibliotecário</h1>
+    <nav class="main-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="usuarios.html" class="active">Usuários</a>
+      <a href="livros.html">Livros</a>
+      <a href="emprestimos.html">Empréstimos</a>
+      <button id="logoutBtn">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="form-section">
+      <h3>Adicionar / Editar Usuário</h3>
+      <form id="usuarioForm">
+        <input type="hidden" id="usuarioId">
+        <input type="text" id="nomeCompleto" placeholder="Nome Completo" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="telefone" placeholder="Telefone" required>
+        <input type="text" id="endereco" placeholder="Endereço" required>
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+
+    <section id="lista-section">
+      <h3>Lista de Usuários</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome Completo</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaUsuarios"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

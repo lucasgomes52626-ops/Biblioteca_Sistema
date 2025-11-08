@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Sistema da Biblioteca</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard-page">
+
+  <header class="main-header">
+    <h1 class="header-title">📚 Sistema Bibliotecário</h1>
+    <nav class="main-nav">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="livros.html">Livros</a>
+      <a href="emprestimos.html">Empréstimos</a>
+      <button id="logoutBtn">Sair</button>
+    </nav>
+  </header>
+
+  <main class="dashboard-content">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total de Usuários</h3><span class="stat-number" id="totalUsuarios">0</span>
+      </div>
+      <div class="stat-card">
+        <h3>Total de Livros</h3><span class="stat-number" id="totalLivros">0</span>
+      </div>
+      <div class="stat-card">
+        <h3>Empréstimos Ativos</h3><span class="stat-number" id="emprestimosAtivos">0</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
