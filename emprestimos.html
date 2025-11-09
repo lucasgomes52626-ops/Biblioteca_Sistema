@@ -18,16 +18,16 @@
   </header>
 
   <main>
-    <section id="form-section">
+    <section id="form-section" class="emprestimo-form">
       <h3>Registrar / Editar Empréstimo</h3>
       <form id="emprestimoForm">
         <input type="hidden" id="emprestimoId">
         
         <label for="usuarioSelect">Usuário:</label>
-        <select id="usuarioSelect" required></select>
+        <select id="usuarioSelect" required><option value="" disabled selected>Selecione o usuário...</option></select>
 
         <label for="livroSelect">Livro:</label>
-        <select id="livroSelect" required></select>
+        <select id="livroSelect" required><option value="" disabled selected>Selecione o livro...</option></select>
 
         <label for="dataEmprestimo">Data do Empréstimo:</label>
         <input type="date" id="dataEmprestimo" required>

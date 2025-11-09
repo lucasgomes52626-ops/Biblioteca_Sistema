@@ -75,8 +75,12 @@ if (document.getElementById('usuarioForm')) {
   }
 
   // Função para gerar ID
-  function gerarId() {
-    return Math.random().toString(36).substr(2, 9);
+  function gerarNovoId() {
+    if (usuarios.length === 0) {
+      return 1;
+    }
+    // Encontra o maior ID existente e adiciona 1
+    return Math.max(...usuarios.map(u => u.id)) + 1;
   }
 
   // Função para listar
@@ -103,7 +107,7 @@ if (document.getElementById('usuarioForm')) {
 
   // Função para editar
   window.editarUsuario = function(id) {
-    const usuario = usuarios.find(u => u.id === id);
+    const usuario = usuarios.find(u => u.id == id); // Usar == para comparar string com número
     document.getElementById('usuarioId').value = id;
     document.getElementById('nomeCompleto').value = usuario.nomeCompleto;
     document.getElementById('email').value = usuario.email;
@@ -114,7 +118,7 @@ if (document.getElementById('usuarioForm')) {
   // Função para excluir
   window.excluirUsuario = async function(id) {
     if (confirm('Deseja realmente excluir este usuário?')) {
-      usuarios = usuarios.filter(u => u.id !== id);
+      usuarios = usuarios.filter(u => u.id != id); // Usar != para comparar string com número
       salvarUsuarios();
       listarUsuarios();
     }
@@ -132,11 +136,11 @@ if (document.getElementById('usuarioForm')) {
 
     if (id) {
       // Editar
-      const index = usuarios.findIndex(u => u.id === id);
+      const index = usuarios.findIndex(u => u.id == id); // Usar == para comparar string com número
       usuarios[index] = { id, nomeCompleto, email, telefone, endereco };
     } else {
       // Incluir
-      const novoUsuario = { id: gerarId(), nomeCompleto, email, telefone, endereco, senha: "senha_padrao_temporaria" };
+      const novoUsuario = { id: gerarNovoId(), nomeCompleto, email, telefone, endereco, senha: "senha_padrao_temporaria" };
       usuarios.push(novoUsuario);
     }
 
@@ -161,8 +165,12 @@ if (document.getElementById('livroForm')) {
   }
 
   // Função para gerar ID
-  function gerarId() {
-    return Math.random().toString(36).substr(2, 9);
+  function gerarNovoId() {
+    if (livros.length === 0) {
+      return 1;
+    }
+    // Encontra o maior ID existente e adiciona 1
+    return Math.max(...livros.map(l => l.id)) + 1;
   }
 
   // Função para listar
@@ -190,7 +198,7 @@ if (document.getElementById('livroForm')) {
 
   // Função para editar
   window.editarLivro = function(id) {
-    const livro = livros.find(l => l.id === id);
+    const livro = livros.find(l => l.id == id); // Usar == para comparar string com número
     document.getElementById('livroId').value = id;
     document.getElementById('titulo').value = livro.titulo;
     document.getElementById('autor').value = livro.autor;
@@ -202,7 +210,7 @@ if (document.getElementById('livroForm')) {
   // Função para excluir
   window.excluirLivro = async function(id) {
     if (confirm('Deseja realmente excluir este livro?')) {
-      livros = livros.filter(l => l.id !== id);
+      livros = livros.filter(l => l.id != id); // Usar != para comparar string com número
       salvarLivros();
       listarLivros();
     }
@@ -226,11 +234,11 @@ if (document.getElementById('livroForm')) {
 
     if (id) {
       // Editar
-      const index = livros.findIndex(l => l.id === id);
+      const index = livros.findIndex(l => l.id == id); // Usar == para comparar string com número
       livros[index] = { id, titulo, autor, editora, anoPublicacao, genero };
     } else {
       // Incluir
-      const novoLivro = { id: gerarId(), titulo, autor, editora, anoPublicacao, genero };
+      const novoLivro = { id: gerarNovoId(), titulo, autor, editora, anoPublicacao, genero };
       livros.push(novoLivro);
     }
 
@@ -255,15 +263,19 @@ if (document.getElementById('emprestimoForm')) {
   }
 
   // Função para gerar ID
-  function gerarId() {
-    return Math.random().toString(36).substr(2, 9);
+  function gerarNovoId() {
+    if (emprestimos.length === 0) {
+      return 1;
+    }
+    // Encontra o maior ID existente e adiciona 1
+    return Math.max(...emprestimos.map(e => e.id)) + 1;
   }
 
   // Popula o select de usuários
   async function carregarUsuarios() {
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     const select = document.getElementById('usuarioSelect');
-    select.innerHTML = '<option value="">Selecione um usuário</option>';
+    select.innerHTML = '<option value="" disabled selected>Selecione o usuário...</option>';
     usuarios.forEach(u => {
       select.innerHTML += `<option value="${u.id}">${u.nomeCompleto}</option>`;
     });
@@ -274,7 +286,7 @@ if (document.getElementById('emprestimoForm')) {
     const livros = JSON.parse(localStorage.getItem('livros')) || [];
     const livrosEmprestadosIds = emprestimos.filter(e => e.status === 'Emprestado').map(e => e.livroId);
     const select = document.getElementById('livroSelect');
-    select.innerHTML = '<option value="">Selecione um livro</option>';
+    select.innerHTML = '<option value="" disabled selected>Selecione o livro...</option>';
     livros.forEach(l => {
       if (!livrosEmprestadosIds.includes(l.id)) {
         select.innerHTML += `<option value="${l.id}">${l.titulo}</option>`;
@@ -317,7 +329,7 @@ if (document.getElementById('emprestimoForm')) {
   // Marca um empréstimo como "Devolvido"
   window.finalizarEmprestimo = async function(id) {
     if (confirm('Deseja marcar este livro como devolvido?')) {
-      const index = emprestimos.findIndex(e => e.id === id);
+      const index = emprestimos.findIndex(e => e.id == id); // Usar == para comparar string com número
       emprestimos[index].status = 'Devolvido';
       salvarEmprestimos();
       listarEmprestimos();
@@ -328,7 +340,7 @@ if (document.getElementById('emprestimoForm')) {
   // Exclui um registro de empréstimo
   window.excluirEmprestimo = async function(id) {
     if (confirm('Deseja realmente excluir este registro do histórico? Esta ação não pode ser desfeita.')) {
-      emprestimos = emprestimos.filter(e => e.id !== id);
+      emprestimos = emprestimos.filter(e => e.id != id); // Usar != para comparar string com número
       salvarEmprestimos();
       listarEmprestimos();
       carregarLivros(); // Recarrega a lista de livros para garantir consistência
@@ -340,7 +352,7 @@ if (document.getElementById('emprestimoForm')) {
     e.preventDefault();
 
     const emprestimo = {
-      id: gerarId(),
+      id: gerarNovoId(),
       usuarioId: document.getElementById('usuarioSelect').value,
       livroId: document.getElementById('livroSelect').value,
       dataEmprestimo: document.getElementById('dataEmprestimo').value,

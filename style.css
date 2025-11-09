@@ -1,51 +1,55 @@
 /* ===== GERAL & VARIÁVEIS ===== */
 :root {
-  --cor-primaria: #5A8DEE; /* Azul suave */
-  --cor-primaria-hover: #4777d6;
-  --cor-secundaria: #63a4ff;
-  --cor-destaque: #FF9F43; /* Laranja para destaque */
-  --cor-destaque-hover: #f88e2a;
-  --cor-fundo: #f5f7fa;
-  --cor-container: #ffffff;
-  --cor-texto: #474747; /* Cinza escuro para melhor legibilidade */
-  --cor-texto-claro: #7a7a7a;
-  --cor-borda: #e0e0e0;
+  /* Paleta 'Clássico Moderno' */
+  --cor-primaria: #2f4858;        /* Azul petróleo */
+  --cor-primaria-hover: #3e5f72; /* Tom mais claro para hover */
+  --cor-fundo: #f2f2f2;           /* Cinza claro */
+  --cor-container: #ffffff;      /* Branco puro */
+  --cor-texto: #1e2a36;           /* Azul escuro */
+  --cor-texto-secundario: #9aa0a6; /* Cinza médio */
+  --cor-borda: #e0e0e0;           /* Cinza para bordas */
+  --cor-logout: #d9534f;          /* Vermelho discreto */
+  --cor-logout-hover: #c9302c;
   --cor-sucesso: #2ecc71;
   --cor-erro: #e74c3c;
-  --sombra: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --sombra: 0 2px 6px rgba(0, 0, 0, 0.1);
   --raio-borda: 8px;
+
+  /* Fontes Clássicas */
+  --fonte-titulo: 'Inter', 'Roboto', sans-serif;
+  --fonte-corpo: 'Inter', 'Roboto', sans-serif;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--fonte-corpo);
 }
 
 body {
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-fundo); /* Cor de base */
   color: var(--cor-texto);
   line-height: 1.6;
-  font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--fonte-corpo);
 }
 
 /* ===== PÁGINA DE LOGIN ===== */
 .login-page {
-  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+  background-color: var(--cor-fundo);
   height: 100vh;
+  flex-direction: column; /* Empilha o card e o rodapé verticalmente */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .login-container {
   background: var(--cor-container);
-  padding: 45px;
   border-radius: var(--raio-borda);
   box-shadow: var(--sombra);
-  width: 100%;
+  padding: 2rem 2.5rem;
+  width: 90%;
   max-width: 400px;
   text-align: center;
   animation: fadeIn 0.5s ease-out;
@@ -60,10 +64,11 @@ body {
   margin-bottom: 10px;
   color: var(--cor-primaria);
   font-size: 28px;
+  font-family: var(--fonte-titulo);
 }
 
 .login-container .subtitle {
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-secundario);
   margin-bottom: 30px;
 }
 
@@ -93,7 +98,7 @@ input[type="email"]:focus,
 input[type="password"]:focus {
   outline: none;
   border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+  box-shadow: 0 0 0 3px rgba(47, 72, 88, 0.2);
 }
 
 #errorMessage {
@@ -102,19 +107,31 @@ input[type="password"]:focus {
   min-height: 20px;
 }
 
+/* Rodapé Minimalista da Página de Login */
+.login-footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 /* ===== HEADER GERAL (DASHBOARD E PÁGINAS INTERNAS) ===== */
 header {
-  background-color: var(--cor-container);
-  color: white;
+  background-color: var(--cor-primaria);
+  color: #ffffff;
   padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 header .header-title {
-  color: var(--cor-primaria);
+  color: #ffffff;
+  font-family: var(--fonte-titulo);
   margin: 0;
   font-size: 22px;
   font-weight: 600;
@@ -127,7 +144,7 @@ header .main-nav {
 }
 
 header .main-nav a {
-  color: var(--cor-texto-claro);
+  color: #ffffff;
   background-color: transparent;
   text-decoration: none;
   padding: 8px 16px;
@@ -137,13 +154,12 @@ header .main-nav a {
 }
 
 header .main-nav a:hover {
-  background-color: #f0f2f5;
-  color: var(--cor-primaria);
+  background-color: var(--cor-primaria-hover);
 }
 
 header .main-nav a.active {
-  background-color: var(--cor-primaria);
-  color: white;
+  background-color: #ffffff;
+  color: var(--cor-primaria);
 }
 
 /* Botões do menu do dashboard com a cor de destaque */
@@ -168,12 +184,13 @@ button, .btn-login {
   font-weight: 600;
   border-radius: var(--raio-borda);
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover, .btn-login:hover {
   background-color: var(--cor-primaria-hover);
   transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 /* Estilo para botões secundários (ex: Editar em tabelas) */
@@ -181,10 +198,19 @@ button:hover, .btn-login:hover {
   background-color: transparent;
   color: var(--cor-primaria);
   border: 1px solid var(--cor-primaria);
+  font-weight: 600;
 }
 .btn-secondary:hover {
   background-color: var(--cor-primaria);
-  color: white;
+  color: #ffffff;
+}
+
+/* Botão de salvar (geralmente o submit do form) */
+form button[type="submit"] {
+  background-color: var(--cor-primaria);
+}
+form button[type="submit"]:hover {
+  background-color: var(--cor-primaria-hover);
 }
 
 .btn-login {
@@ -215,11 +241,13 @@ button:hover, .btn-login:hover {
 }
 
 #logoutBtn {
-  background-color: var(--cor-erro);
+  background-color: var(--cor-logout);
+  border-color: transparent;
 }
 
 #logoutBtn:hover {
-  background-color: #c0392b;
+  background-color: var(--cor-logout-hover);
+  border-color: transparent;
 }
 
 .dashboard-content {
@@ -270,11 +298,12 @@ button:hover, .btn-login:hover {
 
 .content-section h2 {
   margin-bottom: 10px;
-  color: var(--cor-primaria);
+  color: var(--cor-titulo);
+  font-family: var(--fonte-titulo);
 }
 
 .content-section p {
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-secundario);
 }
 
 @keyframes fadeIn {
@@ -310,9 +339,20 @@ main {
 
 #form-section h3, #lista-section h3 {
   margin-bottom: 20px;
-  color: var(--cor-primaria);
-  border-bottom: 2px solid var(--cor-secundaria);
+  color: var(--cor-titulo);
+  font-family: var(--fonte-titulo);
+  border-bottom: 2px solid var(--cor-primaria);
   padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Ícone para o título do formulário de empréstimo */
+#form-section.emprestimo-form h3::before {
+  content: '📖'; /* Ícone de livro aberto */
+  font-size: 1.2em;
+  margin-right: 12px;
+  color: var(--cor-primaria);
 }
 
 /* Formulários de Gerenciamento */
@@ -323,12 +363,13 @@ form input, form select {
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-borda);
   font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 form input:focus, form select:focus {
   outline: none;
   border-color: var(--cor-primaria);
-  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2);
+  box-shadow: 0 0 0 3px rgba(47, 72, 88, 0.2);
 }
 
 form button[type="submit"] {
@@ -354,15 +395,15 @@ thead {
 }
 
 thead th {
-  background-color: #f5f7fa;
+  background-color: #f8f9fa; /* Cinza suave para cabeçalho da tabela */
   font-weight: 600;
-  color: var(--cor-primaria);
+  color: var(--cor-titulo);
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.5px;
 }
 tbody tr:hover {
-  background-color: #fcfcfd;
+  background-color: rgba(47, 72, 88, 0.05); /* Azul claro translúcido */
 }
 
 td button {
@@ -383,20 +424,26 @@ td button:hover {
 /* Botões de ação na tabela */
 button.btn-delete, button.btn-finish {
   background-color: transparent;
-  color: var(--cor-texto-claro);
-  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
+  border: 1px solid transparent;
+  font-weight: 600;
 }
 
 button.btn-delete:hover {
-  background-color: var(--cor-erro);
-  color: white;
-  border-color: var(--cor-erro);
+  background-color: var(--cor-logout);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+button.btn-finish {
+  color: var(--cor-sucesso);
+  border-color: transparent;
 }
 
 button.btn-finish:hover {
   background-color: var(--cor-sucesso);
-  color: white;
-  border-color: var(--cor-sucesso);
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .status {
@@ -430,4 +477,11 @@ button.btn-finish:hover {
     flex-direction: column;
     gap: 15px;
   }
+}
+
+/* Adiciona as fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Linhas alternadas em cinza suave */
 }
