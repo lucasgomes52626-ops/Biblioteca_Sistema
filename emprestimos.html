@@ -29,10 +29,13 @@
         <label for="livroSelect">Livro:</label>
         <select id="livroSelect" required><option value="" disabled selected>Selecione o livro...</option></select>
 
-        <label for="dataEmprestimo">Data do Empréstimo:</label>
+        <label for="dataEmprestimo">📅 Data do Empréstimo:</label>
         <input type="date" id="dataEmprestimo" required>
 
-        <label for="status">Status:</label>
+        <label for="dataDevolucao">🗓️ Data de Devolução (opcional):</label>
+        <input type="date" id="dataDevolucao">
+
+        <label for="status">🔖 Status:</label>
         <select id="status" required>
           <option value="Emprestado">Emprestado</option>
           <option value="Devolvido">Devolvido</option>
@@ -43,14 +46,20 @@
     </section>
 
     <section id="lista-section">
-      <h3>Histórico de Empréstimos</h3>
+      <h3>Histórico de Empréstimos <span id="contadorEmprestimos"></span></h3>
+      <div class="stats-summary">
+        <span id="summaryAtivos"></span>
+        <span id="summaryAtrasados"></span>
+      </div>
+      <input type="search" id="buscaEmprestimo" placeholder="Buscar por usuário, livro ou status...">
       <table>
         <thead>
           <tr>
-            <th>Usuário</th>
-            <th>Livro</th>
-            <th>Data Empréstimo</th>
-            <th>Status</th>
+            <th data-sort="usuario">Usuário</th>
+            <th data-sort="livro">Livro</th>
+            <th data-sort="dataEmprestimo">Data Empréstimo</th>
+            <th>Data Devolução</th>
+            <th data-sort="status">Status</th>
             <th>Ações</th>
           </tr>
         </thead>

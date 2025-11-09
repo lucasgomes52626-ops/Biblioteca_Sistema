@@ -19,19 +19,27 @@
 
   <main>
     <section id="form-section">
-      <h3>Adicionar / Editar Usuário</h3>
+      <h3 id="formTitle">Adicionar Usuário</h3>
       <form id="usuarioForm">
         <input type="hidden" id="usuarioId">
         <input type="text" id="nomeCompleto" placeholder="Nome Completo" required>
+        <span class="error-message" id="nomeError"></span>
         <input type="email" id="email" placeholder="Email" required>
+        <span class="error-message" id="emailError"></span>
         <input type="text" id="telefone" placeholder="Telefone" required>
+        <span class="error-message" id="telefoneError"></span>
         <input type="text" id="endereco" placeholder="Endereço" required>
-        <button type="submit">Salvar</button>
+        <span class="error-message" id="enderecoError"></span>
+        <div class="form-actions">
+          <button type="submit" id="btnSalvar">Salvar</button>
+          <button type="button" id="btnCancelar" class="btn-secondary" style="display: none;">Cancelar</button>
+        </div>
       </form>
     </section>
 
     <section id="lista-section">
-      <h3>Lista de Usuários</h3>
+      <h3><span class="icon">👥</span> <span id="contadorUsuarios"></span></h3>
+      <input type="search" id="buscaUsuario" placeholder="Buscar por nome...">
       <table>
         <thead>
           <tr>

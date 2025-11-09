@@ -20,17 +20,51 @@
   </header>
 
   <main class="dashboard-content">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3>Total de Usuários</h3><span class="stat-number" id="totalUsuarios">0</span>
+    <div class="dashboard-grid">
+      <div class="stat-card users-card">
+        <div class="card-icon">👥</div>
+        <div class="card-info">
+          <span class="card-title">Total de Usuários</span>
+          <span class="card-number" id="totalUsuarios">0</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <h3>Total de Livros</h3><span class="stat-number" id="totalLivros">0</span>
+      <div class="stat-card books-card">
+        <div class="card-icon">📖</div>
+        <div class="card-info">
+          <span class="card-title">Total de Livros</span>
+          <span class="card-number" id="totalLivros">0</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <h3>Empréstimos Ativos</h3><span class="stat-number" id="emprestimosAtivos">0</span>
+      <div class="stat-card loans-card">
+        <div class="card-icon">⏳</div>
+        <div class="card-info">
+          <span class="card-title">Empréstimos Ativos</span>
+          <span class="card-number" id="emprestimosAtivos">0</span>
+        </div>
+      </div>
+      <div class="stat-card returns-card">
+        <div class="card-icon">✅</div>
+        <div class="card-info">
+          <span class="card-title">Devoluções no Mês</span>
+          <span class="card-number" id="devolucoesMes">0</span>
+        </div>
       </div>
     </div>
+
+    <section class="dashboard-section" id="atividade-recente">
+      <h2>Atividade Recente</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Data</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaAtividadeRecente"></tbody>
+      </table>
+    </section>
   </main>
 
   <script src="script.js"></script>

@@ -19,29 +19,43 @@
 
   <main>
     <section id="form-section">
-      <h3>Adicionar / Editar Livro</h3>
+      <h3 id="formTitle">Adicionar Livro</h3>
       <form id="livroForm">
         <input type="hidden" id="livroId">
         <input type="text" id="titulo" placeholder="Título" required>
         <input type="text" id="autor" placeholder="Autor" required>
-        <input type="text" id="editora" placeholder="Editora" required>
+        <input type="text" id="editora" placeholder="Editora">
         <input type="number" min="0" max="2025" id="anoPublicacao" placeholder="Ano de Publicação" required>
-        <input type="text" id="genero" placeholder="Gênero" required>
-        <button type="submit">Salvar</button>
+        <span class="error-message" id="anoError"></span>
+        <select id="categoria" required>
+          <option value="" disabled selected>Selecione a categoria...</option>
+          <option value="Fantasia">Fantasia</option>
+          <option value="Romance">Romance</option>
+          <option value="Ciência">Ciência</option>
+          <option value="História">História</option>
+          <option value="Terror">Terror</option>
+          <option value="Didático">Didático</option>
+          <option value="Outros">Outros</option>
+        </select>
+        <div class="form-actions">
+          <button type="submit" id="btnSalvar">Salvar</button>
+          <button type="button" id="btnCancelar" class="btn-secondary" style="display: none;">Cancelar</button>
+        </div>
       </form>
     </section>
 
     <section id="lista-section">
-      <h3>Lista de Livros</h3>
+      <h3><span class="icon">📚</span> <span id="contadorLivros"></span></h3>
+      <input type="search" id="buscaLivro" placeholder="Buscar por título, autor, editora ou categoria...">
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Autor</th>
+            <th data-sort="id">ID</th>
+            <th data-sort="titulo">Título</th>
+            <th data-sort="autor">Autor</th>
             <th>Editora</th>
-            <th>Ano</th>
-            <th>Gênero</th>
+            <th data-sort="anoPublicacao">Ano</th>
+            <th data-sort="categoria">Categoria</th>
             <th>Ações</th>
           </tr>
         </thead>
