@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!--Cabeçalho, mostra o nome do sistema, o link usuarios tem a classe ativa, indicando página atual e botão de sair-->
   <header class="main-header">
     <h1 class="header-title">📚 Sistema Bibliotecário</h1>
     <nav class="main-nav">
@@ -18,6 +19,7 @@
   </header>
 
   <main>
+    <!--Seção de formulario, adiciona e edita usuarios, span de erros-->
     <section id="form-section">
       <h3 id="formTitle">Adicionar Usuário</h3>
       <form id="usuarioForm">
@@ -36,7 +38,7 @@
         </div>
       </form>
     </section>
-
+    <!--Seção de tabelas, mostra o lista de usuarios cadastrados-->
     <section id="lista-section">
       <h3><span class="icon">👥</span> <span id="contadorUsuarios"></span></h3>
       <input type="search" id="buscaUsuario" placeholder="Buscar por nome...">

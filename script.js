@@ -1,9 +1,10 @@
-
-// Verifica se estamos na página de login para adicionar o listener
+// LOGIN DO SISTEMA
+// Identifica se o elemento id "loginform" existe
 if (document.getElementById("loginForm")) {
+  // Captura o envio do formulario
   document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault();
-  
+    // Coleta os dados e elementos
     const loginButton = this.querySelector('.btn-login');
     const buttonText = loginButton.querySelector('.btn-text');
     const spinner = loginButton.querySelector('.spinner');
@@ -15,43 +16,45 @@ if (document.getElementById("loginForm")) {
     errorMessageElement.textContent = "";
     loginButton.classList.add('loading');
     loginButton.disabled = true;
-
+    // Define as credenciais pré-definidas
     const emailCorreto = "Lucasgm123@gmail.com";
     const senhaCorreta = "123456";
   
-    // Simula uma requisição de rede (2 segundos)
+    // Simula um tempo resposta
     setTimeout(() => {
+    // Valida as credenciais
       if (!email || !senha) {
         errorMessageElement.textContent = "Por favor, preencha todos os campos!";
       } else if (email === emailCorreto && senha === senhaCorreta) {
         localStorage.setItem("logado", "true");
         window.location.href = "dashboard.html";
-        return; // Evita que o código abaixo seja executado
+        return;
       } else {
         errorMessageElement.textContent = "Email ou senha incorretos!";
       }
 
-      // Para o carregamento em caso de erro
+      // Finaliza o carregamento
       loginButton.classList.remove('loading');
       loginButton.disabled = false;
 
     }, 2000);
   });
 }
-
-// Verifica se estamos na página do dashboard para executar o código correspondente
+// DASHBOARD DO SISTEMA
+// detecta a página dashboard
 if (window.location.pathname.includes("dashboard.html")) {
+  // verifica o login
   const logado = localStorage.getItem("logado");
   if (logado !== "true") {
     window.location.href = "index.html"; 
   }
 
-  // Carrega todos os dados do localStorage
+  // Carrega todos os dados do localStorage, onde são armazenados pelos CRUDs de cada módulo
   const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
   const livros = JSON.parse(localStorage.getItem('livros')) || [];
   const emprestimos = JSON.parse(localStorage.getItem('emprestimos')) || [];
 
-  // --- ESTATÍSTICAS ---
+  // estatisticas
   document.getElementById('totalUsuarios').textContent = usuarios.length;
   document.getElementById('totalLivros').textContent = livros.length;
   const emprestimosAtivos = emprestimos.filter(e => e.status === 'Emprestado').length;
@@ -67,13 +70,13 @@ if (window.location.pathname.includes("dashboard.html")) {
   }).length;
   document.getElementById('devolucoesMes').textContent = devolucoesMes;
 
-  // --- ATIVIDADE RECENTE ---
+  // atividade recente
   const tabelaAtividade = document.getElementById('tabelaAtividadeRecente');
-  // Ordena os empréstimos pela data (mais recentes primeiro) e pega os últimos 5
+  // Ordena os empréstimos por data (mais recentes primeiro) e pega os últimos 5
   const emprestimosRecentes = [...emprestimos]
     .sort((a, b) => new Date(b.dataEmprestimo) - new Date(a.dataEmprestimo))
     .slice(0, 5);
-
+  // depois cria as linhas da tabela
   if (emprestimosRecentes.length === 0) {
     tabelaAtividade.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhuma atividade registrada ainda.</td></tr>';
   } else {
@@ -105,7 +108,8 @@ if (document.getElementById("logoutBtn")) {
   });
 }
 
-// Verifica se estamos na página de usuários para executar o código correspondente
+// USUARIOS
+// detecta a página usuarios
 if (document.getElementById('usuarioForm')) {
   const form = document.getElementById('usuarioForm');
   const buscaInput = document.getElementById('buscaUsuario');
@@ -119,7 +123,7 @@ if (document.getElementById('usuarioForm')) {
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
   }
 
-  // Função para gerar ID
+  // Função para gerar novo ID
   function gerarNovoId() {
     if (usuarios.length === 0) {
       return 1;
@@ -162,14 +166,14 @@ if (document.getElementById('usuarioForm')) {
 
   // Função para editar
   window.editarUsuario = function(id) {
-    const usuario = usuarios.find(u => u.id == id); // Usar == para comparar string com número
+    const usuario = usuarios.find(u => u.id == id); 
     document.getElementById('usuarioId').value = id;
     document.getElementById('nomeCompleto').value = usuario.nomeCompleto;
     document.getElementById('email').value = usuario.email;
     document.getElementById('telefone').value = usuario.telefone;
     document.getElementById('endereco').value = usuario.endereco;
 
-    // Atualiza UI para modo de edição
+    // Atualiza para modo de edição
     formTitle.textContent = 'Editando Usuário';
     btnSalvar.textContent = 'Atualizar';
     document.getElementById('btnCancelar').style.display = 'inline-block';
@@ -196,7 +200,7 @@ if (document.getElementById('usuarioForm')) {
     }
   }
 
-  // --- VALIDAÇÃO E MÁSCARA ---
+  // VALIDAÇÃO E MÁSCARA
   const nomeInput = document.getElementById('nomeCompleto');
   const emailInput = document.getElementById('email');
   const telefoneInput = document.getElementById('telefone');
@@ -205,22 +209,25 @@ if (document.getElementById('usuarioForm')) {
   function validarFormulario() {
     let isValid = true;
     limparErros();
-
+    // nome deve ter no minimo 3 caracteres
     if (nomeInput.value.trim().length < 3) {
       document.getElementById('nomeError').textContent = 'O nome deve ter no mínimo 3 caracteres.';
       nomeInput.classList.add('invalid');
       isValid = false;
     }
+    // email deve ter formato valido
     if (!/^\S+@\S+\.\S+$/.test(emailInput.value)) {
       document.getElementById('emailError').textContent = 'Por favor, insira um email válido.';
       emailInput.classList.add('invalid');
       isValid = false;
     }
+    // telefone deve ter no minimo 15 caracteres
     if (telefoneInput.value.length < 15) {
       document.getElementById('telefoneError').textContent = 'O telefone deve estar completo.';
       telefoneInput.classList.add('invalid');
       isValid = false;
     }
+    // endereço não pode estar vazio
     if (enderecoInput.value.trim() === '') {
       document.getElementById('enderecoError').textContent = 'O endereço é obrigatório.';
       enderecoInput.classList.add('invalid');
@@ -228,12 +235,12 @@ if (document.getElementById('usuarioForm')) {
     }
     return isValid;
   }
-
+    // se houver erros, invalid
   function limparErros() {
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
     document.querySelectorAll('form input').forEach(el => el.classList.remove('invalid'));
   }
-
+  // mascara telefone, remove tudo que não é numero, adiciona parenteses e hifens conforme o usuario digita
   telefoneInput.addEventListener('input', (e) => {
     let value = e.target.value.replace(/\D/g, '');
     value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
@@ -245,7 +252,7 @@ if (document.getElementById('usuarioForm')) {
     input.addEventListener('input', () => input.classList.remove('invalid'));
   });
 
-  // Captura do formulário
+  // valida o formulario
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -259,7 +266,7 @@ if (document.getElementById('usuarioForm')) {
 
     if (id) {
       // Editar
-      const index = usuarios.findIndex(u => u.id == id); // Usar == para comparar string com número
+      const index = usuarios.findIndex(u => u.id == id); 
       usuarios[index] = { id, nomeCompleto, email, telefone, endereco };
       alert('Usuário atualizado com sucesso!');
     } else {
@@ -287,7 +294,8 @@ if (document.getElementById('usuarioForm')) {
   document.getElementById('nomeCompleto').focus();
 }
 
-// Verifica se estamos na página de livros para executar o código correspondente
+// Livros
+// detecta a página Livros, dados carregados do localStorage, sortconfig controla a ordem da classificacao da tabela
 if (document.getElementById('livroForm')) {
   const form = document.getElementById('livroForm');
   const buscaInput = document.getElementById('buscaLivro');
@@ -361,9 +369,9 @@ if (document.getElementById('livroForm')) {
     }
   }
 
-  // Função para editar
+  // Função para editar livros
   window.editarLivro = function(id) {
-    const livro = livros.find(l => l.id == id); // Usar == para comparar string com número
+    const livro = livros.find(l => l.id == id);
     document.getElementById('livroId').value = id;
     document.getElementById('titulo').value = livro.titulo;
     document.getElementById('autor').value = livro.autor;
@@ -371,7 +379,7 @@ if (document.getElementById('livroForm')) {
     document.getElementById('anoPublicacao').value = livro.anoPublicacao;
     document.getElementById('categoria').value = livro.categoria;
 
-    // Atualiza UI para modo de edição
+    // Atualiza para modo de edição
     formTitle.textContent = 'Editando Livro';
     btnSalvar.textContent = 'Atualizar';
     document.getElementById('btnCancelar').style.display = 'inline-block';
@@ -389,7 +397,7 @@ if (document.getElementById('livroForm')) {
     limparErrosLivro();
   }
 
-  // Função para excluir
+  // Função para excluir livros
   window.excluirLivro = async function(id) {
     if (confirm('Deseja realmente excluir este livro?')) {
       // O 'id' vindo do HTML é uma string. Se o id original era null, ele virá como a string 'null'.
@@ -405,7 +413,7 @@ if (document.getElementById('livroForm')) {
     }
   }
 
-  // --- VALIDAÇÃO ---
+  // VALIDAÇÃO, garante que o ano de publicação é valido
   function validarFormularioLivro() {
     let isValid = true;
     limparErrosLivro();
@@ -426,7 +434,7 @@ if (document.getElementById('livroForm')) {
     document.getElementById('anoPublicacao').classList.remove('invalid');
   }
 
-  // Captura do formulário
+  // Captura do formulário, novo ou edição
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -482,7 +490,8 @@ if (document.getElementById('livroForm')) {
   document.getElementById('titulo').focus();
 }
 
-// Verifica se estamos na página de empréstimos
+// EMPRESTIMOS
+// Verifica a página de empréstimos
 if (document.getElementById('emprestimoForm')) {
   const form = document.getElementById('emprestimoForm');
   const buscaInput = document.getElementById('buscaEmprestimo');

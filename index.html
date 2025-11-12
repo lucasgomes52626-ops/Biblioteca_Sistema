@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - Sistema da Biblioteca</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres do sistema-->
+  <title>Login - Sistema da Biblioteca</title> <!-- Define o tílulo da página-->
+  <link rel="stylesheet" href="style.css"> <!-- importa o arquivo CSS, visual do sistema-->
 </head>
 <body class="login-page">
-  <div class="login-container">
+  <div class="login-container"> <!--exibe titulo e subtitulo com icone decorativo-->
     <h1><span class="icon">📚</span> Sistema da Biblioteca</h1>
     <p class="subtitle">Acesse o painel administrativo</p>
+    <!--Formulario do login, email e senha-->
     <form id="loginForm">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" value="Lucasgm123@gmail.com" placeholder="exemplo@dominio.com" required>
       </div>
-
+    
       <div class="form-group">
         <label for="senha">Senha:</label>
         <input type="password" id="senha" value="123456" placeholder="Digite sua senha" required>
       </div>
 
       <button type="submit" class="btn-login">
-        <span class="btn-text">Entrar</span>
-        <div class="spinner" style="display: none;"></div>
+        <span class="btn-text">Entrar</span> <!--texto do botão-->
+        <div class="spinner" style="display: none;"></div> <!--circulo animado mostrando, durante carregamento-->
       </button>
     </form>
-    <div id="errorMessage"></div>
+    <div id="errorMessage"></div> <!--exibe mensagens de erro durante o login-->
   </div>
-  <footer class="login-footer">
+  <footer class="login-footer"> <!--rodapé da página de login-->
     <p>© 2025 Sistema Bibliotecário</p>
   </footer>
-  <script src="script.js"></script>
+  <script src="script.js"></script> <!--carrega a lógica do sistema-->
 </body>
 </html>

@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- titulo e menu do sistema, botão de sair e link ativo-->
   <header class="main-header">
     <h1 class="header-title">📚 Sistema Bibliotecário</h1>
     <nav class="main-nav">
@@ -18,6 +19,7 @@
   </header>
 
   <main>
+    <!-- Seção de formulário, adiciona e edita empréstimos, span de erros-->
     <section id="form-section" class="emprestimo-form">
       <h3>Registrar / Editar Empréstimo</h3>
       <form id="emprestimoForm">
@@ -44,7 +46,7 @@
         <button type="submit">Salvar</button>
       </form>
     </section>
-
+    <!-- lista de empréstimos, mostra empréstimos cadastrados, o campo de busca filtra os empréstimos em tempo real-->
     <section id="lista-section">
       <h3>Histórico de Empréstimos <span id="contadorEmprestimos"></span></h3>
       <div class="stats-summary">
